@@ -1,0 +1,53 @@
+{%extends "base.html" %}
+
+{% block heading %}
+	<h1><a href="/">Twitter Project</a>: Re-rate This Tweet</h1>
+{% endblock %}
+
+{%block main%}
+
+<hr />
+
+{% if sentiment %}
+	<p> This is the last tweet you rated. You can redo the rating. </p>
+	<p class="tweet"> {{sentiment.tweet.text}} </p>
+
+	<form method="POST" action="/sentiment/redo/">
+	{% csrf_token %}
+	<input type="hidden" name="tweet_id" value="{{sentiment.tweet.tweet_id}}"/>
+
+	<table>
+		<tr>
+			<td class="rating">
+				<input type="submit" name="rating" value="negative" class="rating"/>
+			</td>
+			<td class="rating">
+				<input type="submit" name="rating" value="neutral" class="rating"/>
+			</td>
+			<td class="rating">
+				<input type="submit" name="rating" value="positive" class="rating"/>
+			</td>
+		</tr>
+	</table>
+	<hr />
+
+	<br />
+	<div id="centered">
+	</form>
+		<table>
+			<tr>
+				<td class="rating">
+					already on previous	tweet
+				</td>
+				<td class="rating">
+					<input type="submit" name="rating" value="irrelevant"/>
+				</td>
+			</tr>
+		</table>
+	</div>
+{% else %}
+	<p class="tweet">No tweet was rated previously</p>
+{% endif %}
+
+
+{% endblock %}

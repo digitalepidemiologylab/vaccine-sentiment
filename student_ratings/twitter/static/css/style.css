@@ -1,0 +1,116 @@
+/* 
+	Our style.css 
+*/
+
+.shade {
+	background-color: #F0F0F0;
+}
+
+.big {
+	font-size: 20px;
+}
+
+.medium {
+	font-size: 15px;
+}
+
+p.tweet {
+	padding-left: 20px;
+	font-size: 24px;
+	background-color: #F2F2F2;
+}
+
+td.tweet {
+	font-size: 24px;
+	background-color: #F2F2F2;
+}
+
+input.rating {
+	font-size: 20px;
+}
+
+td.rating {
+	text-align: center;
+}
+
+td.aligncenter {
+	text-align: center;
+}
+
+td.alignright {
+	text-align: right;
+}
+
+td.alignrightgrey {
+	text-align: right;
+	background-color: #F2F2F2;
+}
+
+td.alignleft {
+	text-align: left;
+}
+
+li.front {
+	font-size:20px;
+}
+
+input.button {
+	font-size: 20px;
+	padding: 3px;
+}
+
+input.medium-button {
+	font-size: 15px;
+	padding: 3px;
+}
+
+#centered {
+	text-align: center;
+}
+
+/*  
+Sticky Footer Solution
+by Steve Hatcher 
+http://stever.ca
+http://www.cssstickyfooter.com
+*/
+
+* {margin:0;padding:0;} 
+
+/* must declare 0 margins on everything, also for main layout components use
+ * padding, not jvertical margins (top and bottom) to add spacing, else those
+ * margins get added to total height and your footer gets pushed down a bit
+ * more, creating vertical scroll bars in the browser */
+
+html, body {height: 100%;}
+
+#wrap {min-height: 100%;}
+
+#main {overflow:auto;
+	padding-bottom: 150px;}  /* must be same height as the footer */
+
+#footer {
+	position: relative;
+	margin-top: -150px; /* negative value of footer height */
+	height: 150px;
+	clear:both;} 
+
+/*Opera Fix*/
+	body:before {/* thanks to Maleika (Kohoutec)*/
+	content:"";
+	height:100%;
+	float:left;
+	width:0;
+	margin-top:-32767px;/* thank you Erik J - negate effect of float*/
+}
+
+
+/* IMPORTANT
+You also need to include this conditional style in the <head> of your HTML file to feed this style to IE 6 and lower and 8 and higher.
+
+<!--[if !IE 7]>
+	<style type="text/css">
+	#wrap {display:table;height:100%}
+	</style>
+<![endif]-->
+*/

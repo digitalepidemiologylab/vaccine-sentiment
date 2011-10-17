@@ -1,0 +1,52 @@
+{%extends "base.html" %}
+
+{% block heading %}
+    <h1><a href="/">Twitter Project</a>: Location Resolution</h1>
+{% endblock %}
+
+{% block help %}
+	<a href="/tweeter/instructions/">help</a>
+{% endblock %}
+
+{%block main%}
+
+<hr />
+
+{%if tweeter %}
+		<div class="span-16">
+		<form method="POST" action="/tweeter/geocode/">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td class="tweet"> 	{{tweeter.location_string}} </td>
+				<td class="alignrightgrey">
+					<input type="submit" name="geocode" value="locate" class="button"/>
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" name="tweeter_id" value="{{tweeter.id}}"/>
+
+		<hr />
+		<br />
+
+		<table>
+			<tr>
+				<td class="alignleft">
+					<input type="submit" name="no-location" value="no location information" class="button"/>
+				</td>
+				<td class="alignright">
+					<input type="submit" name="skip" value="skip" class="button"/>
+				</td>
+			</tr>
+		</table>
+		</form>
+		</div>
+
+		<div class="span-16">
+		<br />
+		<br />
+		<p class="medium"> Number of locations resolved: {{num_geocoded}}/{{num_left}} </p>
+		</div>
+{% endif %}
+
+{%endblock%}

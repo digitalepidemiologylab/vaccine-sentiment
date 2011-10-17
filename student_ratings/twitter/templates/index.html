@@ -1,0 +1,29 @@
+{%extends "base.html" %}
+
+{%block heading%}
+	<h1>Twitter Project</h1>
+{%endblock%}
+
+{%block main%}
+	<hr />
+	<div class="span-8">
+	<ul>
+		<li class="front"> <a href="/tweets/rate">Start Rating Tweets</a> </li>
+		<li class="front"> <a href="/instructions/">Review The Instructions</a> </li>
+		{% if data %}
+			<li class="front"> <a href="/user/data/">Download Rating Data (csv)</a> </li>
+			<li class="front"> <a href="/data-format/">Description of Data Format</a> </li>
+		{% endif %}
+
+		{% if perms.tweeter %}
+
+			{% if perms.tweeter.can_geocode %}
+
+				<li class="front"> <a href="/tweeter/locate/">Resolve Locations</a></li>
+
+			{% endif %}
+
+		{% endif %}
+	</ul>
+	</div>
+{%endblock%}

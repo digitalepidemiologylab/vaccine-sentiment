@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<p> LOGIN </p>
+<form action="/users/login/" method="post">
+{% csrf_token %}
+
+{% if error_msg %}
+	<p> {{error_msg}}
+{% endif %}
+
+<table>
+<tr>
+	<td>
+		username
+	</td>
+	<td>
+		{{form.username.errors}}
+		{{form.username}}
+	</td>
+</tr>
+
+<tr>
+	<td>
+		password
+	</td>
+	<td>
+	{{form.password.errors}}
+	{{form.password}}
+	</td>
+</tr>
+</table>
+
+<input name="next" type="hidden" value="{{next_url}}"/>
+<input class="button" type="submit" value="login"/>
+
+</form>
+{% endblock %}

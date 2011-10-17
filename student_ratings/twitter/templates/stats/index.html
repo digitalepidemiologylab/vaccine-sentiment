@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block heading%}
+	<h1><a href="/">Twitter Project</a>: Statistics </h1>
+{% endblock %}
+
+{% block main %}
+
+<div class="span-16">
+
+<ul>
+	<li> <a href="/stats/users/">See all users</a> </li>
+
+	{% for g in groups %}
+		
+	<li> <a href="/stats/groups/{{g.id}}/">Statistics for {{g.name|upper}} students</a> </li>
+
+	{% endfor %}
+</ul>
+
+</div>
+
+
+{% endblock %}

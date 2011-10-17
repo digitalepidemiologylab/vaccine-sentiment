@@ -1,0 +1,110 @@
+{%extends "base.html" %}
+
+{% block heading %}
+    <h1><a href="/">Twitter Project</a>: Location Resolution</h1>
+{% endblock %}
+
+{%block main%}
+
+<hr />
+
+{% if alt_location %}
+<p class="tweet">Alternate Location: {{alt_location}} (Location: {{tweeter.location_string}}) </p>
+{% else %}
+<p class="tweet">Location: {{location_string|escape}}</p>
+
+{% endif %}
+
+<div class="span-16">
+<h3> Results </h3>
+
+<hr />
+{% if geocode_results %}
+		<table>
+		{% for result in geocode_results %}
+			<tr>
+				<td class="big"> {{result.country_code}} ({{result.country_name}})</td> 
+				<td class="big"> {{result.state_code}} </td>
+				<td class="alignright">
+					<form method="POST" action="/tweeter/geocode/confirm/">
+						{% csrf_token %}
+						<input type="hidden" name="tweeter_id" value="{{tweeter.id}}"/>
+						<input type="hidden" name="country_code" value="{{result.country_code}}"/>
+						<input type="hidden" name="state_code" value="{{result.state_code}}"/>
+						<input type="submit" name="accept" value="accept" class="rating"/>
+					</form>
+				</td>
+			</tr>
+		{% endfor %}
+		</table>
+		<hr />
+
+		<div class="shade">
+		<form method="POST" action="/tweeter/geocode/">	
+			{% csrf_token %}
+			<input type="hidden" name="tweeter_id" value="{{tweeter.id}}"/>
+			<table>
+			<tr>
+				<td class="medium">
+					Try alternate location string: <input type="text" name="alt-location" class="rating"/>	
+				</td>
+				<td class="alignright">
+					<input type="submit" name="geocode" value="locate" class="medium-button"/>
+				</td>
+			</tr>
+			</table>
+		</form>
+		</div>
+
+		<hr />
+
+		<form method="POST" action="/tweeter/geocode/confirm/">
+			{% csrf_token %}
+			<input type="hidden" name="tweeter_id" value="{{tweeter.id}}"/>
+			<table>
+			<tr>
+				<td class="alignleft"> 
+					<input type="submit" name="reject" value="no location information" class="button"/> 
+				</td>
+				<td class="alignleft"> 
+					<input type="submit" name="ambiguous" value="ambiguous" class="button"/> 
+				</td>
+				<td class="alignright"> 
+					<input type="submit" name="skip" value="skip" class="button"/> 
+				</td>
+			</tr>
+			</table>
+		</form>
+		<br />
+		<br />
+
+{% else %}
+	<p class="big">No location information found. </p>
+
+	<div class="shade">
+		<form method="POST" action="/tweeter/geocode/">	
+			{% csrf_token %}
+			<input type="hidden" name="tweeter_id" value="{{tweeter.id}}"/>
+			<table>
+			<tr>
+				<td class="medium">
+					Try alternate location string: <input type="text" name="alt-location" class="rating"/>	
+				</td>
+				<td class="alignright">
+					<input type="submit" name="geocode" value="locate" class="medium-button"/>
+				</td>
+			</tr>
+			</table>
+		</form>
+	</div>
+
+	<hr />
+
+	<form method="POST" action="/tweeter/geocode/confirm/">
+		{% csrf_token %}
+		<input type="hidden" name="tweeter_id" value="{{tweeter.id}}"/>
+		<input type = "submit" name="skip" value="next location" class="rating"/>
+	</form>
+{% endif %}
+</div>
+{% endblock %}

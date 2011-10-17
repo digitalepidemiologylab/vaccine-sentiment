@@ -1,0 +1,6 @@
+*.pyc
+*.swp
+local_settings.py
+no_check_in
+analysis/geocode/data
+analysis/geocode/results

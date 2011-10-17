@@ -1,0 +1,51 @@
+{%extends "base.html" %}
+
+{%block main%}
+
+<hr />
+
+{%if tweet %}
+		<p class="tweet"> {{tweet.text}} </p>
+
+		<form method="POST" action="/sentiment/rate/">
+		{% csrf_token %}
+		<input type="hidden" name="tweet_id" value="{{tweet.tweet_id}}"/>
+		<input type="hidden" name="tweet_type" value="{{tweet_type}}"/>
+
+		<table>
+		<tr>
+			<td class="rating">
+				<input type="submit" name="rating" value="negative" class="rating"/>
+			</td>
+			<td class="rating">
+				<input type="submit" name="rating" value="neutral" class="rating"/>
+			</td>
+			<td class="rating">
+				<input type="submit" name="rating" value="positive" class="rating"/>
+			</td>
+		</tr>
+		</table>
+		<hr />
+
+		<br />
+		<div id="centered">
+		<table>
+			<tr>
+				<td class="rating">
+					<a href="/sentiment/redo/">&lt;&lt; redo previous</a>
+				</td>
+				<td class="rating">
+					<input type="submit" name="rating" value="irrelevant"/>
+				</td>
+			</tr>
+		</table>
+		</div>
+		</form>
+
+		<p> You have rated {{num_ratings}} tweets so far. </p>
+{% else %}
+	<p class="tweet"> There are no more tweets to rate </p>
+{% endif %}
+
+
+{%endblock%}

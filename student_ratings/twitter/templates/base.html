@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title> twitter sentiment </title>
+		<link rel="stylesheet" href="{{STATIC_URL}}css/blueprint/screen.css" type="text/css" media="screen,projection"/>
+		<link rel="stylesheet" href="{{STATIC_URL}}css/blueprint/print.css" type="text/css" media="print"/>
+		<link rel="stylesheet" href="{{STATIC_URL}}css/style.css" type="text/css" media="screen,projection"/>
+		<!--[if lt IE 8]>
+			<link rel="stylesheet" href="/xmedia/css/blueprint/ie.css" type="text/css" media="screen,projection"/>
+		<![endif]-->
+		<!--[if !IE 7]>
+			<style type="text/css">
+			#wrap {display:table;height:100%}
+			</style>
+		<![endif]-->
+
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="main">
+			<div class="container">
+			<div id="header" class="span-24">
+					<div class="left">
+					{% block heading %}
+						<h1><a href="/">Twitter Project</a>: Rate This Tweet</h1>
+					{% endblock %}
+					</div>
+					<div class="right">
+					{% if user.is_authenticated %}
+						hello {{user.username}} | <a href="/users/logout">logout</a> | 
+					{% else %}
+						<a href="/users/login">login</a> | 
+					{% endif %}
+
+					{% block help %}
+						<a href="/instructions/">help</a>
+					{% endblock %}
+					</div>
+			</div>
+			{% block main %}
+			{% endblock %}	
+		</div>
+		</div>
+		</div>
+		<div id="footer">
+			<div id="centered">
+				<img src="{{STATIC_URL}}images/psulogo.jpg"/>
+				<br /> <br />
+				<a href="http://salathegroup.com/">salathegroup.com</a>&nbsp;&nbsp;
+			</div>
+		</div>
+	</body>
+</html>

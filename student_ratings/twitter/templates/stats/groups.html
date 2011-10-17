@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+{% if stats %}
+		<div class="span-16">
+
+		<h2> Statistics for {{group.name}} </h2>
+
+		<table>
+			<tr>
+				<td>user</td>
+				<td>
+					neutral	
+				</td>
+				<td>
+					negative	
+				</td>
+				<td>
+					positive	
+				</td>
+				<td>
+					irrelevant	
+				</td>
+				<td>
+					total	
+				</td>
+			</tr>
+		{% for stat in stats %}
+			<tr>
+				<td>
+					<h3>{{stat.user.last_name}}, {{stat.user.first_name}} (id={{stat.user.id}})</h3>
+				</td>
+				<td>
+					{{stat.neutral}}
+				</td>
+				<td>
+					{{stat.negative}}
+				</td>
+				<td>
+					{{stat.positive}}
+				</td>
+				<td>
+					{{stat.irrelevant}}
+				</td>
+				<td>
+					<h3>{{stat.total}}</h3>
+				</td>
+			</tr>
+		{% endfor %}
+		</table>
+		</div>
+{% else %}
+	<p> Sorry, you need to be staff to access this feature </a>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+This is all the source code used for the following paper:
+
+Salathé M, Khandelwal S, 2011 Assessing Vaccination Sentiments with Online
+Social Media: Implications for Infectious Disease Dynamics and Control. PLoS
+Comput Biol 7(10): e1002199. doi:10.1371/journal.pcbi.1002199
+
+Please cite the paper above, if you use our code or create a derivative work. 
+
+The analysis/ directory contains all the code for the sentiment analysis (based
+on NLTK/MegaM). It also containst the geocoding code. 
+
+The student_ratings directory contains Python/Django code to let students rate
+tweets (as described in our paper). The Django code assumes a MySQL backend. 
+
+The code as written originally was designed to work with the original tweet
+ids, tweeter ids etc from Twitter. A lot of the scripts assume certain files
+exist (some of those have not been checked into this public repository). In
+those cases some changes will be necessary. If you need help navigating the
+code, let us know. 
+
+khandelwal@psu.edu, salathe@psu.edu

@@ -1,0 +1,39 @@
+{%extends "base.html" %}
+
+{% block heading %}
+	<h1><a href="/">Twitter Project</a>: View Tweet</h1>
+{% endblock %}
+
+
+{%block main%}
+
+<hr />
+
+{%if tweet %}
+		<p class="tweet"> {{tweet.text}} </p>
+{% else %}
+		<p class="tweet"> No tweet with the specified id. </p>
+{% endif %}
+
+{% if votes_summary %}
+
+<div class="span-8">
+<h2> How users voted </h2>
+
+<table>
+{% for vote in votes_summary %}
+	<tr>
+	<td class="big">
+		{{vote.vote}}
+	</td>
+	<td class="big">
+		{{vote.total}}
+	</td>
+{% endfor %}
+</table>
+</div>
+
+{% endif %}
+
+
+{%endblock%}
